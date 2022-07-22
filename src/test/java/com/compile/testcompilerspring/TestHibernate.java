@@ -16,15 +16,15 @@ public class TestHibernate {
 
             Session session = HibernateUtils.getSession();
             session.beginTransaction();
-//            session.saveOrUpdate(Worker.builder()
-//                    .name("фывфывфы")
-//                    .post("фывфыв")
-//                    .dateemployment("20фывыфв22").build());
-//
-//            session.saveOrUpdate(Worker.builder()
-//                    .name("фывфывфыqwe")
-//                    .post("фывфывqweqwe")
-//                    .dateemployment("20фывыфв22qweqwe").build());
+            session.saveOrUpdate(Worker.builder()
+                    .name("фывфывфы")
+                    .post("фывфыв")
+                    .dateemployment("20фывыфв22").build());
+
+            session.saveOrUpdate(Worker.builder()
+                    .name("фывфывфыqwe")
+                    .post("фывфывqweqwe")
+                    .dateemployment("20фывыфв22qweqwe").build());
 
             ArrayList<Worker> workerArrayList = (ArrayList<Worker>)session.createSQLQuery("select * from workers").addEntity(Worker.class).list();
             System.out.println("<____________________________>\n" + workerArrayList.size());

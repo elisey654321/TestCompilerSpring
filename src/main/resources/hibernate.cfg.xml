@@ -5,14 +5,14 @@
 <hibernate-configuration>
   <session-factory>
 
-    <property name="connection.url">jdbc:postgresql://localhost:5432/postgres</property>
+    <property name="connection.url">jdbc:postgresql://host.docker.internal:49158/postgres</property>
     <property name="connection.driver_class">org.postgresql.Driver</property>
     <property name="hibernate.connection.username">postgres</property>
-    <property name="hibernate.connection.password">Hg159156@</property>
+    <property name="hibernate.connection.password">postgrespw</property>
 
 <!--    <property name="connection_pool_size">1</property>-->
 
-<!--    <property name="hbm2ddl.auto">create</property>-->
+    <property name="hbm2ddl.auto">update</property>
 
     <property name="show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
