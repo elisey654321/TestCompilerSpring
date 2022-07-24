@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <style>
+        p{
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+    <p>Логин</p>
+    <input id="name" size="40">
+    <p>Пароль</p>
+    <input id="password" size="40">
+    <p><button onclick="clickRegistration()">Зарегистрироваться</button></p>
+</div>
+</body>
+<script>
+    function clickRegistration(){
+        users = {
+            name: document.getElementById('name').valueOf().value,
+            password: document.getElementById('password').valueOf().value,
+        };
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '/Registration', true);
+        var body = JSON.stringify(users);
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                console.log(xhr.responseText);
+            };
+        };
+        xhr.send(body);
+    }
+
+</script>
+</html>

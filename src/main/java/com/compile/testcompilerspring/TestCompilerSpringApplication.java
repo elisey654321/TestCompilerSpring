@@ -17,16 +17,16 @@ public class TestCompilerSpringApplication {
         SpringApplication.run(TestCompilerSpringApplication.class, args);
     }
 
-    @Bean
-    public CommandLineRunner demoBean(WorkerRepository repository) {
-        return (args -> {
-            repository.save(Worker.builder()
-                    .name("TestNameOne")
-                    .post("manager")
-                        .build());
-            List<Worker> workers = repository.findByPost("manager");
-            System.out.println(workers.get(0).getName());
-        });
-    }
+//    @Bean
+//    public CommandLineRunner demoBean(WorkerRepository repository) {
+//        return (args -> {
+//            repository.save(Worker.builder()
+//                    .name("TestNameOne")
+//                    .post("manager")
+//                        .build());
+//            List<Worker> workers = repository.findByPost("manager");
+//            System.out.println(workers.get(0).getName());
+//        });
+//    }
 
 }
