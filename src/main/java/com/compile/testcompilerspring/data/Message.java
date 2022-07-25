@@ -3,6 +3,7 @@ package com.compile.testcompilerspring.data;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -24,5 +25,7 @@ public class Message {
 
     @Lob
     String message;
+
+    Date timestamp;
 
 }

@@ -17,9 +17,27 @@
         <p>Пароль</p>
         <input id="password" type="text" size="40">
         <p>
-            <button onclick="location.href='/CreateItem?name=test';">Войти</button>
+            <button onclick="enter();">Войти</button>
             <a href="registration.html">Регистрация</a>
         </p>
     </div>
 </body>
+<script>
+    function enter(){
+        users = {
+            name: document.getElementById('name').valueOf().value,
+            password: document.getElementById('password').valueOf().value,
+        };
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", '/Enter', true);
+        let body = JSON.stringify(users);
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                let response = xhr.response;
+                location.href = "chat";
+            };
+        };
+        xhr.send(body);
+    }
+</script>
 </html>

@@ -24,41 +24,41 @@ import java.util.ArrayList;
 public class RegistrationController {
 
     @PostMapping("/Registration")
-    public @ResponseBody ResponseEntity<String> CreateItemPost(HttpServletRequest request,
+    public @ResponseBody
+    ResponseEntity<String> CreateItemPost(HttpServletRequest request,
                                           UriComponentsBuilder uriComponentsBuilder) {
 
         ResponseEntity response = null;
 
-        try(Session session = HibernateUtils.getSession();) {
+        try (Session session = HibernateUtils.getSession();) {
             session.beginTransaction();
 
             BufferedReader reader = request.getReader();
-            String line,jsonString = "";
-            while ((line = reader.readLine()) != null){
+            String line, jsonString = "";
+            while ((line = reader.readLine()) != null) {
                 jsonString += line;
             }
-            User user = createUserFromJsonString(jsonString);
-            Boolean userCreated = tryCreatedUser(session,user);
+            User user = UserJSON.createUserFromJsonString(jsonString);
+            Boolean userCreated = user.tryCreatedUser(session);
 
-            if (userCreated){
+            if (userCreated) {
                 session.save(user);
                 response = new ResponseEntity<String>("user_created", HttpStatus.OK);
-            }else {
+            } else {
                 response = new ResponseEntity<String>("user_already", HttpStatus.OK);
             }
 
             session.getTransaction().commit();
         } catch (IOException e) {
             response = new ResponseEntity<String>("error", HttpStatus.BAD_REQUEST);
-//            throw new RuntimeException(e);
         }
 
         return response;
     }
 
     private Boolean tryCreatedUser(Session session, User user) {
-        ArrayList<User> users = (ArrayList<User>)session.createSQLQuery("select * from users where users.name = :name")
-                .setParameter("name",user.getName())
+        ArrayList<User> users = (ArrayList<User>) session.createSQLQuery("select * from users where users.name = :name")
+                .setParameter("name", user.getName())
                 .addEntity(User.class)
                 .list();
         return users.size() == 0;
@@ -74,7 +74,6 @@ public class RegistrationController {
                 .name(userJSON.getName())
                 .build();
         return user;
-
     }
 
 }
