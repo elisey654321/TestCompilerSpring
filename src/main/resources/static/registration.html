@@ -24,12 +24,20 @@
             name: document.getElementById('name').valueOf().value,
             password: document.getElementById('password').valueOf().value,
         };
-        var xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
         xhr.open("POST", '/Registration', true);
-        var body = JSON.stringify(users);
+        let body = JSON.stringify(users);
         xhr.onreadystatechange = function () {
             if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                console.log(xhr.responseText);
+                let response = xhr.response;
+                if(response == 'user_created'){
+                    alert("Пользователь создан");
+                    location.href = "index.html";
+                }else if(response == 'user_already'){
+                    alert("Пользователь с таким именем уже есть");
+                }else {
+                    alert("Что то пошло не так.");
+                }
             };
         };
         xhr.send(body);

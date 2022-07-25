@@ -16,8 +16,6 @@ public class HibernateUtils {
     static{
         Logger.getLogger("org.hibernate").setLevel(Level.OFF);
 
-        // Loads hibernate.cfg.xml by default
-
         Configuration cfg = new Configuration().configure();
 
         addEntityClasses(cfg);
@@ -27,6 +25,8 @@ public class HibernateUtils {
 
     private static void addEntityClasses(Configuration cfg) {
         cfg.addAnnotatedClass(Worker.class);
+        cfg.addAnnotatedClass(User.class);
+        cfg.addAnnotatedClass(Message.class);
     }
 
     /**
