@@ -31,12 +31,17 @@
         let xhr = new XMLHttpRequest();
         xhr.open("POST", '/Enter', true);
         let body = JSON.stringify(users);
-        xhr.onreadystatechange = function () {
-            if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                let response = xhr.response;
-                location.href = "chat";
+
+        function getOnreadystatechange() {
+            return function () {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    let response = xhr.response;
+                    location.href = "chat?user=" + xhr.response;
+                } //else if (xhr.status != '') alert("User is not");
             };
-        };
+        }
+
+        xhr.onreadystatechange = getOnreadystatechange();
         xhr.send(body);
     }
 </script>
