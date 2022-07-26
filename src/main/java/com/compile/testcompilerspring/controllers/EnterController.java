@@ -37,17 +37,9 @@ public class EnterController {
             }
             User user = UserJSON.createUserFromJsonString(jsonString);
             user = user.searchUser(session, user);
-            if (user != null) {
-//                byte[] bytesOfMessage = user.getPassword().getBytes("UTF-8");
-//                MessageDigest md = MessageDigest.getInstance("MD5");
-//                byte[] theMD5digest = md.digest(bytesOfMessage);
-//
-//                StringBuilder stringBuilder = new StringBuilder();
-//                for (int i = 0; i < theMD5digest.length; i++) {
-//                    stringBuilder.append(theMD5digest[i]);
-//                }
+            if (user != null)
                 response = new ResponseEntity<String>(user.getName(), HttpStatus.OK);
-            } else
+            else
                 response = new ResponseEntity<String>("bad", HttpStatus.BAD_REQUEST);
             session.getTransaction().commit();
         } catch (IOException e) {

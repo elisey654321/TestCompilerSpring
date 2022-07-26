@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 @Controller
 public class ChatController {
-    @GetMapping("/chat")
+//    @GetMapping("/chat")
     public String greeting(@RequestParam(name="user") String name, Model model) {
         Session session = HibernateUtils.getSession();
         session.beginTransaction();
