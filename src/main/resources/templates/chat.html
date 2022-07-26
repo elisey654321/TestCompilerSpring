@@ -326,7 +326,9 @@
   </style>
 </head>
 <body>
-<!--<p th:text="'Hello, ' + ${name} + '!'" />-->
+
+<p th:text="'Hello, ' + ${name} + '!'" />
+
 <div class="chatbox-holder">
   <div class="chatbox">
     <div class="chatbox-top">
@@ -334,7 +336,7 @@
       </div>
       <div class="chat-partner-name">
         <span class="status online"></span>
-        <a target="_blank" href="https://www.facebook.com/mfreak">${chatName}</a>
+        <a target="_blank" href="https://www.facebook.com/mfreak" th:text=${chatName}></a>
       </div>
       <div class="chatbox-icons">
         <a href="javascript:void(0);"><i class="fa fa-minus"></i></a>
@@ -342,8 +344,12 @@
       </div>
     </div>
 
-    <div class="chat-messages">
-      <div class="message-box-holder">
+    <div class="chat-messages" th:fragment=${chatLayout}>
+
+
+    </div>
+
+      <!--<div class="message-box-holder">
         <div class="message-box">
           Hello
         </div>
@@ -356,9 +362,9 @@
         <div class="message-box message-partner">
           Hi.
         </div>
-      </div>
+      </div>-->
 
-    </div>
+
 
     <div class="chat-input-holder">
       <textarea class="chat-input"></textarea>

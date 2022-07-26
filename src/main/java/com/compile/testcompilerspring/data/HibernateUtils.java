@@ -27,6 +27,8 @@ public class HibernateUtils {
         cfg.addAnnotatedClass(Worker.class);
         cfg.addAnnotatedClass(User.class);
         cfg.addAnnotatedClass(Message.class);
+        cfg.addAnnotatedClass(Chat.class);
+        cfg.addAnnotatedClass(UsersChat.class);
     }
 
     /**

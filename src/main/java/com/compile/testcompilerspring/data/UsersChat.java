@@ -10,12 +10,15 @@ import javax.persistence.*;
 @NoArgsConstructor
 @ToString
 @Builder
-public class Chat {
+public class UsersChat {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     Integer id;
 
-    String nameChat;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    User user;
 
 }

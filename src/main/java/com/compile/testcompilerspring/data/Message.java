@@ -1,8 +1,10 @@
 package com.compile.testcompilerspring.data;
 
 import lombok.*;
+import org.hibernate.Session;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
@@ -29,15 +31,17 @@ public class Message {
     @JoinColumn(name = "chat_id")
     Chat chat;
 
+    @Getter
     @Transient
-    String messageMy = "<div class=\"message-box-holder\">\n" +
+    static String messageMy = "<div class=\"message-box-holder\">\n" +
             "        <div class=\"message-box\">\n" +
-            "          myText\n" +
+            "          <text>\n" +
             "        </div>\n" +
             "      </div>";
 
+    @Getter
     @Transient
-    String messageOut = "<div class=\"message-box-holder\">\n" +
+    static String messageOut = "<div class=\"message-box-holder\">\n" +
             "        <div class=\"message-sender\">\n" +
             "          <user>\n" +
             "        </div>\n" +
@@ -45,4 +49,20 @@ public class Message {
             "          <text>\n" +
             "        </div>\n" +
             "      </div>";
+
+    public static ArrayList<Message> getListMessagesFromChat(Session session,Chat chat){
+        String sqlQuery = "select\n" +
+                "       *\n" +
+                "from message\n" +
+                "where\n" +
+                "      message.chat_id = :chat_id\n" +
+                "order by timestamp";
+        ArrayList<Message> arrayList = (ArrayList<Message>)session.createSQLQuery(sqlQuery)
+                .setParameter("chat_id",chat.getId())
+                .addEntity(Message.class)
+                .list();
+
+        return arrayList;
+    }
+
 }
