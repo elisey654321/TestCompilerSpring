@@ -1,5 +1,4 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Getting Started: Serving Web Content</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -326,8 +325,7 @@
   </style>
 </head>
 <body>
-
-<p th:text="'Hello, ' + ${name} + '!'" />
+<button onclick="clickTest()">click</button>
 
 <div class="chatbox-holder">
   <div class="chatbox">
@@ -336,7 +334,7 @@
       </div>
       <div class="chat-partner-name">
         <span class="status online"></span>
-<!--        <a target="_blank" href="https://www.facebook.com/mfreak" th:text=${chatName}></a>-->
+        <a target="_blank" href="https://www.facebook.com/mfreak">first chat</a>
       </div>
       <div class="chatbox-icons">
         <a href="javascript:void(0);"><i class="fa fa-minus"></i></a>
@@ -344,27 +342,9 @@
       </div>
     </div>
 
-<!--    <div class="chat-messages" th:fragment=${chatLayout}>-->
-
-
+    <div class="chat-messages" id="chat-messages">
+        messages
     </div>
-
-      <!--<div class="message-box-holder">
-        <div class="message-box">
-          Hello
-        </div>
-      </div>
-
-      <div class="message-box-holder">
-        <div class="message-sender">
-          Mamun Khandaker
-        </div>
-        <div class="message-box message-partner">
-          Hi.
-        </div>
-      </div>-->
-
-
 
     <div class="chat-input-holder">
       <textarea class="chat-input"></textarea>
@@ -384,12 +364,17 @@
 </div>
 </body>
 <script>
-  $(function(){
-    $('.fa-minus').click(function(){    $(this).closest('.chatbox').toggleClass('chatbox-min');
-    });
-    $('.fa-close').click(function(){
-      $(this).closest('.chatbox').hide();
-    });
-  });
+  // $(function(){
+  //   $('.fa-minus').click(function(){    $(this).closest('.chatbox').toggleClass('chatbox-min');
+  //   });
+  //   $('.fa-close').click(function(){
+  //     $(this).closest('.chatbox').hide();
+  //   });
+  // });
+
+  function clickTest() {
+    document.querySelector('.chat-messages').innerHTML = "";
+  }
+
 </script>
 </html>

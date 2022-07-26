@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/chat")
+@RequestMapping("/chatRest")
 public class ChatRestController {
 
     @GetMapping("")
-    public String greeting() {
+    public String fillChat(String test) {
+        System.out.println(test);
 //        Session session = HibernateUtils.getSession();
 //        session.beginTransaction();
 //
