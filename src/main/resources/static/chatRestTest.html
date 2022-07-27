@@ -10,25 +10,13 @@
 <script>
   function testRest(){
       const request = new XMLHttpRequest();
-      const url = 'http://localhost:8080/chatRest/';
+      const url = 'http://localhost:8080/chatRest/User1';
       request.open("GET", url, true);
-      // request.onreadystatechange = getOnreadystatechange();
-      request.send("test");
+      request.send();
 
       request.onload = (e) => {
           alert(request.response);
       }
-
-      // function getOnreadystatechange() {
-      //     return function () {
-      //         if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-      //             let response = request.response;
-      //             alert(response);
-      //         } //else if (xhr.status != '') alert("User is not");
-      //     };
-      // }
-
-
 
   }
 </script>

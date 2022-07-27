@@ -7,20 +7,23 @@ import com.compile.testcompilerspring.data.User;
 import org.hibernate.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/chatRest")
 public class ChatRestController {
 
-    @GetMapping("")
-    public String fillChat(String test) {
-        System.out.println(test);
+    @GetMapping("/{name}")
+    public String fillChat(@PathVariable String name) {
+
+
+//        System.out.println(test);
 //        Session session = HibernateUtils.getSession();
 //        session.beginTransaction();
 //
