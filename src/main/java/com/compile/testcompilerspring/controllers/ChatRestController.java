@@ -14,42 +14,57 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 @RestController
-@RequestMapping("/chatRest")
+@RequestMapping("/Rest")
 public class ChatRestController {
 
-    @GetMapping("/{name}")
+    @GetMapping("/chat.{name}")
     public String fillChat(@PathVariable String name) {
+        Session session = HibernateUtils.getSession();
+        session.beginTransaction();
 
+        User ourUser = User.searchUserNotPassword(session, name);
+        Chat.ChatBuilder builder = Chat.builder();
+        builder.id(1);
+        builder.nameChat("chat1");
+        Chat nowChat = builder.build();
+        ArrayList<Message> arrayMessage = Message.getListMessagesFromChat(session, nowChat);
 
-//        System.out.println(test);
-//        Session session = HibernateUtils.getSession();
-//        session.beginTransaction();
-//
-//        User ourUser = User.searchUserNotPassword(session,name);
-//        Chat nowChat = Chat.builder()
-//                .id(4)
-//                .nameChat("chat1")
-//                .build();
-//        ArrayList<Message> arrayMessage = Message.getListMessagesFromChat(session,nowChat);
-//
-//        String myText = Message.getMessageMy();
-//        String messageOut = Message.getMessageOut();
-//        String chatLayout = "";
-//
-//        for (Message mess: arrayMessage) {
-//            if (mess.getUser().equals(ourUser)){
-//                chatLayout += myText.replace("<text>",mess.getMessage());
-//            }else
-//                chatLayout += messageOut.replace("<text>",mess.getMessage()).replace("<user>",mess.getUser().getName());
-//        }
-//
-//        model.addAttribute("chatLayout", chatLayout);
-//        model.addAttribute("chatName","first chat");
-////        model.addAttribute("name", name);
-//
-//        session.getTransaction().commit();
-        return "chat";
+        String myText = Message.getMessageMy();
+        String messageOut = Message.getMessageOut();
+        String chatLayout = "";
+
+        for (Message mess : arrayMessage) {
+            if (mess.getUser().equals(ourUser)) {
+                chatLayout += myText.replace("<text>", mess.getMessage());
+            } else
+                chatLayout += messageOut.replace("<text>", mess.getMessage()).replace("<user>", mess.getUser().getName());
+        }
+        session.getTransaction().commit();
+        return chatLayout;
+    }
+
+    @GetMapping("/sendMessage.{name}.{text}")
+    public String createMessage(@PathVariable String name, @PathVariable String text) {
+        Session session = HibernateUtils.getSession();
+        session.beginTransaction();
+
+        User ourUser = User.searchUserNotPassword(session, name);
+        Chat.ChatBuilder builder = Chat.builder();
+        builder.id(1);
+        builder.nameChat("chat1");
+        Chat nowChat = builder.build();
+        Message message = Message.builder()
+                .message(text)
+                .chat(nowChat)
+                .user(ourUser)
+                .timestamp(new Date())
+                .build();
+        session.save(message);
+        session.getTransaction().commit();
+
+        return "ok";
     }
 }

@@ -34,21 +34,21 @@ public class Message {
     @Getter
     @Transient
     static String messageMy = "<div class=\"message-box-holder\">\n" +
-            "        <div class=\"message-box\">\n" +
-            "          <text>\n" +
-            "        </div>\n" +
-            "      </div>";
+            "    <div class=\"message-box\">\n" +
+            "      <text>\n" +
+            "    </div>\n" +
+            "  </div>";
 
     @Getter
     @Transient
-    static String messageOut = "<div class=\"message-box-holder\">\n" +
-            "        <div class=\"message-sender\">\n" +
-            "          <user>\n" +
-            "        </div>\n" +
-            "        <div class=\"message-box message-partner\">\n" +
-            "          <text>\n" +
-            "        </div>\n" +
-            "      </div>";
+    static String messageOut = "<div class=\"message-box-holder-sender\">\n" +
+            "    <div class=\"message-sender\">\n" +
+            "      <user>\n" +
+            "    </div>\n" +
+            "    <div class=\"message-box-sender\">\n" +
+            "      <text>\n" +
+            "    </div>\n" +
+            "  </div>";
 
     public static ArrayList<Message> getListMessagesFromChat(Session session,Chat chat){
         String sqlQuery = "select\n" +

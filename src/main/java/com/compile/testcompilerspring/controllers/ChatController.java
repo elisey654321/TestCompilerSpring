@@ -16,32 +16,32 @@ import java.util.ArrayList;
 public class ChatController {
 //    @GetMapping("/chat")
     public String greeting(@RequestParam(name="user") String name, Model model) {
-        Session session = HibernateUtils.getSession();
-        session.beginTransaction();
-
-        User ourUser = User.searchUserNotPassword(session,name);
-        Chat nowChat = Chat.builder()
-                .id(4)
-                .nameChat("chat1")
-                .build();
-        ArrayList<Message> arrayMessage = Message.getListMessagesFromChat(session,nowChat);
-
-        String myText = Message.getMessageMy();
-        String messageOut = Message.getMessageOut();
-        String chatLayout = "";
-
-        for (Message mess: arrayMessage) {
-            if (mess.getUser().equals(ourUser)){
-                chatLayout += myText.replace("<text>",mess.getMessage());
-            }else
-                chatLayout += messageOut.replace("<text>",mess.getMessage()).replace("<user>",mess.getUser().getName());
-        }
-
-        model.addAttribute("chatLayout", chatLayout);
-        model.addAttribute("chatName","first chat");
-//        model.addAttribute("name", name);
-
-        session.getTransaction().commit();
+//        Session session = HibernateUtils.getSession();
+//        session.beginTransaction();
+//
+//        User ourUser = User.searchUserNotPassword(session,name);
+//        Chat nowChat = Chat.builder()
+//                .id(4)
+//                .nameChat("chat1")
+//                .build();
+//        ArrayList<Message> arrayMessage = Message.getListMessagesFromChat(session,nowChat);
+//
+//        String myText = Message.getMessageMy();
+//        String messageOut = Message.getMessageOut();
+//        String chatLayout = "";
+//
+//        for (Message mess: arrayMessage) {
+//            if (mess.getUser().equals(ourUser)){
+//                chatLayout += myText.replace("<text>",mess.getMessage());
+//            }else
+//                chatLayout += messageOut.replace("<text>",mess.getMessage()).replace("<user>",mess.getUser().getName());
+//        }
+//
+//        model.addAttribute("chatLayout", chatLayout);
+//        model.addAttribute("chatName","first chat");
+////        model.addAttribute("name", name);
+//
+//        session.getTransaction().commit();
         return "chat";
     }
 }
