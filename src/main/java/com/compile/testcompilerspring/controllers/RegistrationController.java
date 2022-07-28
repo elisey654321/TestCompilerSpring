@@ -24,8 +24,7 @@ import java.util.ArrayList;
 public class RegistrationController {
 
     @PostMapping("/Registration")
-    public @ResponseBody
-    ResponseEntity<String> CreateItemPost(HttpServletRequest request,
+    public @ResponseBody ResponseEntity<String> CreateItemPost(HttpServletRequest request,
                                           UriComponentsBuilder uriComponentsBuilder) {
 
         ResponseEntity response = null;
