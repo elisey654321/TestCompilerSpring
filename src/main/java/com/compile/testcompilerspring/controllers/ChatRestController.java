@@ -5,6 +5,9 @@ import com.compile.testcompilerspring.data.HibernateUtils;
 import com.compile.testcompilerspring.data.Message;
 import com.compile.testcompilerspring.data.User;
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +23,9 @@ import java.util.Date;
 @RequestMapping("/Rest")
 public class ChatRestController {
 
+    @Autowired
+    private SimpMessagingTemplate simpMessagingTemplate;
+
     @GetMapping("/chat.{name}")
     public String fillChat(@PathVariable String name) {
         Session session = HibernateUtils.getSession();
@@ -27,7 +33,7 @@ public class ChatRestController {
 
         User ourUser = User.searchUserNotPassword(session, name);
         Chat.ChatBuilder builder = Chat.builder();
-        builder.id(1);
+        builder.id(4);
         builder.nameChat("chat1");
         Chat nowChat = builder.build();
         ArrayList<Message> arrayMessage = Message.getListMessagesFromChat(session, nowChat);
@@ -47,13 +53,14 @@ public class ChatRestController {
     }
 
     @GetMapping("/sendMessage.{name}.{text}")
+    @SendTo("/sendMessage/greetings")
     public String createMessage(@PathVariable String name, @PathVariable String text) {
         Session session = HibernateUtils.getSession();
         session.beginTransaction();
 
         User ourUser = User.searchUserNotPassword(session, name);
         Chat.ChatBuilder builder = Chat.builder();
-        builder.id(1);
+        builder.id(4);
         builder.nameChat("chat1");
         Chat nowChat = builder.build();
         Message message = Message.builder()
@@ -64,6 +71,8 @@ public class ChatRestController {
                 .build();
         session.save(message);
         session.getTransaction().commit();
+
+        simpMessagingTemplate.convertAndSend("/sendMessage/greetings", "Hello");
 
         return "ok";
     }

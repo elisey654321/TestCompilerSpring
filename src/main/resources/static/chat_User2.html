@@ -53,7 +53,7 @@
   function fillChat(){
 
     const request = new XMLHttpRequest();
-    const url = 'http://localhost:8080/Rest/chat.User1';
+    const url = 'http://localhost:8080/Rest/chat.User2';
     request.open("GET", url, true);
     request.send();
 
@@ -67,7 +67,7 @@
     document.getElementsByClassName('text')[0].value = '';
 
     const request = new XMLHttpRequest();
-    const url = 'http://localhost:8080/Rest/sendMessage.User1.' + text;
+    const url = 'http://localhost:8080/Rest/sendMessage.User2.' + text;
     request.open("GET", url, true);
     request.send();
 
