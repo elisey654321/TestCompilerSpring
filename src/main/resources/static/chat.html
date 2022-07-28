@@ -13,6 +13,12 @@
     .chat-messages{
       width: 300px;
       border-radius: 10px;
+      overflow: auto;
+      height: 200px;
+      -webkit-animation-name: move;
+      -webkit-animation-duration: 4s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
     }
     .message-box{
       background: #9cc900;
@@ -46,10 +52,17 @@
 </div>
 <div class="sender">
   <input type="text" class="text" id="text-message">
-  <button onclick="sendMessage()">send</button>
+  <button id="linkadd" onclick="sendMessage()">send</button>
 </div>
 </body>
 <script>
+  document.querySelector("#text-message").addEventListener("keyup", event => {
+    if(event.key !== "Enter") return; // Use `.key` instead.
+    document.querySelector("#linkadd").click(); // Things you want to do.
+    event.preventDefault(); // No need to `return false;`.
+  });
+
+
   function fillChat(){
 
     const request = new XMLHttpRequest();
