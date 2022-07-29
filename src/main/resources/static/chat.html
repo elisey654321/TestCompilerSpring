@@ -14,7 +14,7 @@
       width: 300px;
       border-radius: 10px;
       overflow: auto;
-      height: 200px;
+      height: 400px;
       -webkit-animation-name: move;
       -webkit-animation-duration: 4s;
       -webkit-animation-iteration-count: infinite;
@@ -66,12 +66,14 @@
   function fillChat(){
 
     const request = new XMLHttpRequest();
-    const url = 'http://localhost:8080/Rest/chat.User1';
+    const url = '/Rest/chat.User1';
     request.open("GET", url, true);
     request.send();
 
     request.onload = (e) => {
-      document.querySelector('#chat-messages').innerHTML = request.response;
+      const chat_messages = document.querySelector('#chat-messages');
+      chat_messages.innerHTML = request.response;
+      chat_messages.scrollTo(0, chat_messages.scrollHeight);
     }
   }
 
@@ -80,7 +82,7 @@
     document.getElementsByClassName('text')[0].value = '';
 
     const request = new XMLHttpRequest();
-    const url = 'http://localhost:8080/Rest/sendMessage.User1.' + text;
+    const url = '/Rest/sendMessage.User1.' + text;
     request.open("GET", url, true);
     request.send();
 
@@ -92,7 +94,7 @@
   let stompClient = null;
 
   function webSock(){
-    const socket = new SockJS('http://localhost:8080/gs-guide-websocket');
+    const socket = new SockJS('/gs-guide-websocket');
     stompClient = Stomp.over(socket);
     stompClient.connect({},onConnected);
     fillChat();

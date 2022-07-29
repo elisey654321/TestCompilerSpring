@@ -33,7 +33,7 @@ public class ChatRestController {
 
         User ourUser = User.searchUserNotPassword(session, name);
         Chat.ChatBuilder builder = Chat.builder();
-        builder.id(1);
+        builder.id(4);
         builder.nameChat("chat1");
         Chat nowChat = builder.build();
         ArrayList<Message> arrayMessage = Message.getListMessagesFromChat(session, nowChat);
@@ -60,7 +60,7 @@ public class ChatRestController {
 
         User ourUser = User.searchUserNotPassword(session, name);
         Chat.ChatBuilder builder = Chat.builder();
-        builder.id(1);
+        builder.id(4);
         builder.nameChat("chat1");
         Chat nowChat = builder.build();
         Message message = Message.builder()
