@@ -10,6 +10,9 @@
           crossorigin="anonymous"></script>
   <script src="../scripts/stomp.min.js"></script>
   <style>
+    main-display{
+      display: inline;
+    }
     .chat-messages{
       width: 300px;
       border-radius: 10px;
@@ -38,21 +41,138 @@
       margin: 5px;
       width: 285px;
       text-align: left;
+
     }
     .text{
       width: 225px;
     }
-
+    .contacts{
+      padding-left: 5px;
+      margin: 5px;
+      background: #0030ff;
+      width: 295px;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body onload="webSock()">
 <!--<button onclick="clickTest()">click</button>-->
-<div id="chat-messages" class="chat-messages">
-  <p>test</p>
-</div>
-<div class="sender">
-  <input type="text" class="text" id="text-message">
-  <button id="linkadd" onclick="sendMessage()">send</button>
+<div id="main-display">
+  <div id="contacts" class="contacts">
+    <div id="contact">
+      <p>User1</p>
+    </div>
+  </div>
+  <div id="chat-messages" class="chat-messages">
+    <div class="message-box-holder">
+      <div class="message-box">
+        Test
+      </div>
+    </div><div class="message-box-holder">
+      <div class="message-box">
+        new message user1
+      </div>
+    </div><div class="message-box-holder-sender">
+      <div class="message-sender">
+        User2
+      </div>
+      <div class="message-box-sender">
+        new message user2
+      </div>
+    </div><div class="message-box-holder">
+      <div class="message-box">
+        test
+      </div>
+    </div><div class="message-box-holder">
+      <div class="message-box">
+        tesssss
+      </div>
+    </div><div class="message-box-holder-sender">
+      <div class="message-sender">
+        User2
+      </div>
+      <div class="message-box-sender">
+        tesxt
+      </div>
+    </div><div class="message-box-holder">
+      <div class="message-box">
+        dsdsad
+      </div>
+    </div><div class="message-box-holder-sender">
+      <div class="message-sender">
+        User2
+      </div>
+      <div class="message-box-sender">
+        mnm,nkml
+      </div>
+    </div><div class="message-box-holder">
+      <div class="message-box">
+        'llkl
+      </div>
+    </div><div class="message-box-holder-sender">
+      <div class="message-sender">
+        User2
+      </div>
+      <div class="message-box-sender">
+        l,mll
+      </div>
+    </div><div class="message-box-holder-sender">
+      <div class="message-sender">
+        User2
+      </div>
+      <div class="message-box-sender">
+        hkjjkhhkjlklhj
+      </div>
+    </div><div class="message-box-holder">
+      <div class="message-box">
+        l
+      </div>
+    </div><div class="message-box-holder">
+      <div class="message-box">
+
+      </div>
+    </div><div class="message-box-holder">
+      <div class="message-box">
+        ывфыфв
+      </div>
+    </div><div class="message-box-holder">
+      <div class="message-box">
+        ыфвыфвыф
+      </div>
+    </div><div class="message-box-holder">
+      <div class="message-box">
+        фыыыыыыыыы
+      </div>
+    </div><div class="message-box-holder">
+      <div class="message-box">
+        ыыыыыыыы
+      </div>
+    </div><div class="message-box-holder">
+      <div class="message-box">
+        ыыыыыыыыы
+      </div>
+    </div><div class="message-box-holder">
+      <div class="message-box">
+        sdfsd
+      </div>
+    </div><div class="message-box-holder">
+      <div class="message-box">
+        asdsad
+      </div>
+    </div><div class="message-box-holder">
+      <div class="message-box">
+        sfsdfsdf
+      </div>
+    </div><div class="message-box-holder">
+      <div class="message-box">
+        рапрап
+      </div>
+    </div>
+  </div>
+  <div class="sender">
+    <input type="text" class="text" id="text-message">
+    <button id="linkadd" onclick="sendMessage()">send</button>
+  </div>
 </div>
 </body>
 <script>
