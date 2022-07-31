@@ -59,7 +59,7 @@
 <!--<button onclick="clickTest()">click</button>-->
 <div id="main-display">
   <div id="contacts" class="contacts">
-    <div id="contact">
+    <div onclick="clickDiv(this.id)" id="contact">
       <p>User1</p>
     </div>
   </div>
@@ -176,6 +176,10 @@
 </div>
 </body>
 <script>
+  function clickDiv(id){
+   alert(id);
+  }
+
   document.querySelector("#text-message").addEventListener("keyup", event => {
     if(event.key !== "Enter") return; // Use `.key` instead.
     document.querySelector("#linkadd").click(); // Things you want to do.
