@@ -36,7 +36,7 @@
             return function () {
                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                     let response = xhr.response;
-                    location.href = "chat?user=" + xhr.response;
+                    location.href = "chat.html?user=" + xhr.response;
                 } //else if (xhr.status != '') alert("User is not");
             };
         }

@@ -32,7 +32,10 @@ public class UsersChat {
     get array contacts
      */
     public static ArrayList<UsersChat> getArrayListContacts(User nowUser, Session session){
-        ArrayList<UsersChat> usersChats = (ArrayList<UsersChat>) session.createSQLQuery(getSqlQuerry()).addEntity(UsersChat.class).list();
+        ArrayList<UsersChat> usersChats = (ArrayList<UsersChat>) session.createSQLQuery(getSqlQuerry())
+
+                .addEntity(UsersChat.class)
+                .list();
 
 
         return new ArrayList<>();

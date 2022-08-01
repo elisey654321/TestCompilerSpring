@@ -188,9 +188,10 @@
 
 
   function fillChat(){
+    const name = new URL(window.location.href).searchParams.get("user");
 
     const request = new XMLHttpRequest();
-    const url = '/Rest/chat.User1';
+    const url = '/Rest/chat.'+name;
     request.open("GET", url, true);
     request.send();
 
@@ -225,12 +226,12 @@
   }
 
   function setConnected(connected) {
-    if (connected) {
-      alert(true);
-    }
-    else {
-      alert(false);
-    }
+    // if (connected) {
+    //   alert(true);
+    // }
+    // else {
+    //   alert(false);
+    // }
   }
 
   const onConnected = function (frame) {

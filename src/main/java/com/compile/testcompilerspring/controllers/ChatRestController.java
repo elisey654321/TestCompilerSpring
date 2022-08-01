@@ -26,6 +26,22 @@ public class ChatRestController {
     @Autowired
     private SimpMessagingTemplate simpMessagingTemplate;
 
+    @GetMapping("/GetMain_Display.{name}")
+    public String GetMain_Display(@PathVariable String name){
+        return "";
+    }
+
+    @GetMapping("/GetContacts.{name}")
+    public String GetContacts(@PathVariable String name){
+        Session session = HibernateUtils.getSession();
+        session.beginTransaction();
+
+        User ourUser = User.searchUserNotPassword(session, name);
+
+
+        return "";
+    }
+
     @GetMapping("/chat.{name}")
     public String fillChat(@PathVariable String name) {
         Session session = HibernateUtils.getSession();
@@ -33,7 +49,7 @@ public class ChatRestController {
 
         User ourUser = User.searchUserNotPassword(session, name);
         Chat.ChatBuilder builder = Chat.builder();
-        builder.id(1);
+        builder.id(4);
         builder.nameChat("chat1");
         Chat nowChat = builder.build();
         ArrayList<Message> arrayMessage = Message.getListMessagesFromChat(session, nowChat);
@@ -60,7 +76,7 @@ public class ChatRestController {
 
         User ourUser = User.searchUserNotPassword(session, name);
         Chat.ChatBuilder builder = Chat.builder();
-        builder.id(1);
+        builder.id(4);
         builder.nameChat("chat1");
         Chat nowChat = builder.build();
         Message message = Message.builder()
