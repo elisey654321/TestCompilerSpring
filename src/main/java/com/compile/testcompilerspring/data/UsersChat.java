@@ -20,6 +20,10 @@ public class UsersChat {
     Integer id;
 
     @OneToOne
+    @JoinColumn(name = "chat_id")
+    Chat chat;
+
+    @OneToOne
     @JoinColumn(name = "user_id")
     User user;
 
@@ -32,17 +36,17 @@ public class UsersChat {
     get array contacts
      */
     public static ArrayList<UsersChat> getArrayListContacts(User nowUser, Session session){
-        ArrayList<UsersChat> usersChats = (ArrayList<UsersChat>) session.createSQLQuery(getSqlQuerry())
-
-                .addEntity(UsersChat.class)
-                .list();
+//        ArrayList<UsersChat> usersChats = (ArrayList<UsersChat>) session.createSQLQuery(getSqlQuerry())
+//                .setParameter()
+//                .addEntity(UsersChat.class)
+//                .list();
 
 
         return new ArrayList<>();
     }
 
     private static String getSqlQuerry() {
-        return "select * from user";
+        return "select * from userschat where userschat.";
     }
 
 }

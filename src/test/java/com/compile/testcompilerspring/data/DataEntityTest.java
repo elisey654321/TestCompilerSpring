@@ -26,10 +26,12 @@ class DataEntityTest {
 
         UsersChat usersChat1 = UsersChat.builder()
                 .user(user1)
+                .chat(chat)
                 .build();
 
         UsersChat usersChat2 = UsersChat.builder()
                 .user(user2)
+                .chat(chat)
                 .build();
 
         Message message = Message.builder()
