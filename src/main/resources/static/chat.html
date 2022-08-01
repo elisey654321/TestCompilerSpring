@@ -60,7 +60,6 @@
 <div id="main-display">
   <div id="contacts" class="contacts">
     <div onclick="clickDiv(this.id)" id="contact">
-      <p>User1</p>
     </div>
   </div>
   <div id="chat-messages" class="chat-messages">
@@ -176,8 +175,12 @@
 </div>
 </body>
 <script>
+  const name = new URL(window.location.href).searchParams.get("user");
+  let nowChat_id = 1;
+
   function clickDiv(id){
-   alert(id);
+    nowChat_id = id.replace('chat', '');
+    fillChat();
   }
 
   document.querySelector("#text-message").addEventListener("keyup", event => {
@@ -186,12 +189,34 @@
     event.preventDefault(); // No need to `return false;`.
   });
 
+  function fillLayout(){
+    fillContacts();
+    fillChat();
+  }
+
+  function fillContacts(){
+    const request = new XMLHttpRequest();
+    const url = '/Rest/GetContacts.'+name;
+    request.open("GET", url, true);
+    request.send();
+
+    request.onload = (e) => {
+      const chat_messages = document.querySelector('#contacts');
+      chat_messages.innerHTML = request.response;
+      chat_messages.scrollTo(0, chat_messages.scrollHeight);
+
+      if (document.querySelector('#contacts').childElementCount == 1){
+        let id = document.querySelector('#contacts').childNodes[0].id;
+        if (id != null) {
+          nowChat_id = id.replace('chat', '');
+        }
+      }
+    }
+  }
 
   function fillChat(){
-    const name = new URL(window.location.href).searchParams.get("user");
-
     const request = new XMLHttpRequest();
-    const url = '/Rest/chat.'+name;
+    const url = '/Rest/chat.' + nowChat_id + '.' +name;
     request.open("GET", url, true);
     request.send();
 
@@ -207,12 +232,11 @@
     document.getElementsByClassName('text')[0].value = '';
 
     const request = new XMLHttpRequest();
-    const url = '/Rest/sendMessage.User1.' + text;
+    const url = '/Rest/sendMessage.'+ nowChat_id + '.' + name + '.' + text;
     request.open("GET", url, true);
     request.send();
 
     request.onload = (e) => {
-      // fillChat();
     }
   }
 
@@ -222,7 +246,7 @@
     const socket = new SockJS('/gs-guide-websocket');
     stompClient = Stomp.over(socket);
     stompClient.connect({},onConnected);
-    fillChat();
+    fillLayout();
   }
 
   function setConnected(connected) {
@@ -241,7 +265,7 @@
   }
 
   function onMessageReceived(x) {
-    fillChat();
+    fillLayout();
   }
 
 </script>

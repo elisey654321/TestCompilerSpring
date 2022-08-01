@@ -20,8 +20,17 @@ class DataEntityTest {
                 .password("123")
                 .build();
 
+        User user3 = User.builder()
+                .name("User3")
+                .password("123")
+                .build();
+
         Chat chat = Chat.builder()
                 .nameChat("chat1")
+                .build();
+
+        Chat chat2 = Chat.builder()
+                .nameChat("chat2")
                 .build();
 
         UsersChat usersChat1 = UsersChat.builder()
@@ -32,6 +41,16 @@ class DataEntityTest {
         UsersChat usersChat2 = UsersChat.builder()
                 .user(user2)
                 .chat(chat)
+                .build();
+
+        UsersChat usersChat3 = UsersChat.builder()
+                .user(user1)
+                .chat(chat2)
+                .build();
+
+        UsersChat usersChat4 = UsersChat.builder()
+                .user(user3)
+                .chat(chat2)
                 .build();
 
         Message message = Message.builder()
@@ -72,9 +91,13 @@ class DataEntityTest {
 
         session.saveOrUpdate(user1);
         session.saveOrUpdate(user2);
+        session.saveOrUpdate(user3);
         session.saveOrUpdate(chat);
+        session.saveOrUpdate(chat2);
         session.saveOrUpdate(usersChat1);
         session.saveOrUpdate(usersChat2);
+        session.saveOrUpdate(usersChat3);
+        session.saveOrUpdate(usersChat4);
         session.saveOrUpdate(message);
         session.saveOrUpdate(message1);
         session.saveOrUpdate(message2);

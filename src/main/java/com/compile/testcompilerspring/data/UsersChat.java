@@ -36,17 +36,16 @@ public class UsersChat {
     get array contacts
      */
     public static ArrayList<UsersChat> getArrayListContacts(User nowUser, Session session){
-//        ArrayList<UsersChat> usersChats = (ArrayList<UsersChat>) session.createSQLQuery(getSqlQuerry())
-//                .setParameter()
-//                .addEntity(UsersChat.class)
-//                .list();
+        ArrayList<UsersChat> usersChats = (ArrayList<UsersChat>) session.createSQLQuery(getSqlQuerry())
+                .setParameter("user_id",nowUser)
+                .addEntity(UsersChat.class)
+                .list();
 
-
-        return new ArrayList<>();
+        return usersChats;
     }
 
     private static String getSqlQuerry() {
-        return "select * from userschat where userschat.";
+        return "select * from userschat where userschat.user_id = :user_id";
     }
 
 }

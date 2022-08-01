@@ -1,9 +1,6 @@
 package com.compile.testcompilerspring.controllers;
 
-import com.compile.testcompilerspring.data.Chat;
-import com.compile.testcompilerspring.data.HibernateUtils;
-import com.compile.testcompilerspring.data.Message;
-import com.compile.testcompilerspring.data.User;
+import com.compile.testcompilerspring.data.*;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -37,19 +34,32 @@ public class ChatRestController {
         session.beginTransaction();
 
         User ourUser = User.searchUserNotPassword(session, name);
+        ArrayList<UsersChat> arrayListContacts = UsersChat.getArrayListContacts(ourUser, session);
 
+        String contactsLayout = "";
 
-        return "";
+        Integer count = 1;
+
+        for (UsersChat usersChat:arrayListContacts) {
+            contactsLayout += UsersChat.getContact()
+                    .replace("numberContact","chat" + String.valueOf(usersChat.getChat().getId()))
+                    .replace("name",usersChat.getChat().getNameChat());
+            count++;
+        }
+
+        session.getTransaction().commit();
+
+        return contactsLayout;
     }
 
-    @GetMapping("/chat.{name}")
-    public String fillChat(@PathVariable String name) {
+    @GetMapping("/chat.{id_chat}.{name}")
+    public String fillChat(@PathVariable String name, @PathVariable Integer id_chat) {
         Session session = HibernateUtils.getSession();
         session.beginTransaction();
 
         User ourUser = User.searchUserNotPassword(session, name);
         Chat.ChatBuilder builder = Chat.builder();
-        builder.id(4);
+        builder.id(id_chat);
         builder.nameChat("chat1");
         Chat nowChat = builder.build();
         ArrayList<Message> arrayMessage = Message.getListMessagesFromChat(session, nowChat);
@@ -68,15 +78,15 @@ public class ChatRestController {
         return chatLayout;
     }
 
-    @GetMapping("/sendMessage.{name}.{text}")
+    @GetMapping("/sendMessage.{id_chat}.{name}.{text}")
     @SendTo("/sendMessage/greetings")
-    public String createMessage(@PathVariable String name, @PathVariable String text) {
+    public String createMessage(@PathVariable String name, @PathVariable String text, @PathVariable Integer id_chat) {
         Session session = HibernateUtils.getSession();
         session.beginTransaction();
 
         User ourUser = User.searchUserNotPassword(session, name);
         Chat.ChatBuilder builder = Chat.builder();
-        builder.id(4);
+        builder.id(id_chat);
         builder.nameChat("chat1");
         Chat nowChat = builder.build();
         Message message = Message.builder()
