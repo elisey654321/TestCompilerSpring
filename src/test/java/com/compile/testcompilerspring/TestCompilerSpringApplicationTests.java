@@ -8,6 +8,7 @@ class TestCompilerSpringApplicationTests {
 
     @Test
     void contextLoads() {
+        System.out.println("79315216800".length());
     }
 
 }
