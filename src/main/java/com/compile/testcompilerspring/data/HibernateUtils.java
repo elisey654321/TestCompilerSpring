@@ -1,5 +1,6 @@
 package com.compile.testcompilerspring.data;
 
+import com.compile.testcompilerspring.data.virtualTables.GoodsWarehousesRemains;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -29,6 +30,10 @@ public class HibernateUtils {
         cfg.addAnnotatedClass(Message.class);
         cfg.addAnnotatedClass(Chat.class);
         cfg.addAnnotatedClass(UsersChat.class);
+        cfg.addAnnotatedClass(GoodsWarehouses.class);
+        cfg.addAnnotatedClass(GoodsWarehousesRemains.class);
+        cfg.addAnnotatedClass(Warehouses.class);
+        cfg.addAnnotatedClass(Item.class);
     }
 
     /**
