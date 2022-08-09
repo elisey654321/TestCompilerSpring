@@ -36,20 +36,15 @@ public class ChatRestController {
         User ourUser = User.searchUserNotPassword(session, name);
         ArrayList<UsersChat> arrayListContacts = UsersChat.getArrayListContacts(ourUser, session);
 
-        String contactsLayout = "";
-
-        Integer count = 1;
+        StringBuilder contactsLayout = new StringBuilder();
 
         for (UsersChat usersChat:arrayListContacts) {
-            contactsLayout += UsersChat.getContact()
-                    .replace("numberContact","chat" + String.valueOf(usersChat.getChat().getId()))
-                    .replace("name",usersChat.getChat().getNameChat());
-            count++;
+            contactsLayout.append(UsersChat.getContact()
+                    .replace("numberContact","chat" + usersChat.getChat().getId())
+                    .replace("name",usersChat.getChat().getNameChat()));
         }
-
         session.getTransaction().commit();
-
-        return contactsLayout;
+        return contactsLayout.toString();
     }
 
     @GetMapping("/chat.{id_chat}.{name}")
@@ -58,24 +53,22 @@ public class ChatRestController {
         session.beginTransaction();
 
         User ourUser = User.searchUserNotPassword(session, name);
-        Chat.ChatBuilder builder = Chat.builder();
-        builder.id(id_chat);
-        builder.nameChat("chat1");
-        Chat nowChat = builder.build();
+        Chat nowChat = Chat.builder().id(id_chat).build();
+
         ArrayList<Message> arrayMessage = Message.getListMessagesFromChat(session, nowChat);
 
         String myText = Message.getMessageMy();
         String messageOut = Message.getMessageOut();
-        String chatLayout = "";
+        StringBuilder chatLayout = new StringBuilder();
 
         for (Message mess : arrayMessage) {
             if (mess.getUser().equals(ourUser)) {
-                chatLayout += myText.replace("<text>", mess.getMessage());
+                chatLayout.append(myText.replace("<text>", mess.getMessage()));
             } else
-                chatLayout += messageOut.replace("<text>", mess.getMessage()).replace("<user>", mess.getUser().getName());
+                chatLayout.append(messageOut.replace("<text>", mess.getMessage()).replace("<user>", mess.getUser().getName()));
         }
         session.getTransaction().commit();
-        return chatLayout;
+        return chatLayout.toString();
     }
 
     @GetMapping("/sendMessage.{id_chat}.{name}.{text}")
@@ -85,10 +78,8 @@ public class ChatRestController {
         session.beginTransaction();
 
         User ourUser = User.searchUserNotPassword(session, name);
-        Chat.ChatBuilder builder = Chat.builder();
-        builder.id(id_chat);
-        builder.nameChat("chat1");
-        Chat nowChat = builder.build();
+        Chat nowChat = Chat.builder().id(id_chat).build();
+
         Message message = Message.builder()
                 .message(text)
                 .chat(nowChat)
