@@ -1,11 +1,10 @@
 package com.compile.testcompilerspring.data;
 
+import com.compile.testcompilerspring.data.enums.TypesMovement;
 import org.hibernate.Session;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class GoodsWarehousesTest {
     @Test

@@ -1,7 +1,7 @@
 package com.compile.testcompilerspring.data.virtualTables;
 
 import com.compile.testcompilerspring.data.GoodsWarehouses;
-import com.compile.testcompilerspring.data.TypesMovement;
+import com.compile.testcompilerspring.data.enums.TypesMovement;
 import lombok.*;
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;

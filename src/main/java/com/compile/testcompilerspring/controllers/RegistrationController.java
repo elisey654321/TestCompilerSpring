@@ -1,15 +1,13 @@
 package com.compile.testcompilerspring.controllers;
 
 import com.compile.testcompilerspring.data.HibernateUtils;
-import com.compile.testcompilerspring.data.JSON_Classes.UserJSON;
+import com.compile.testcompilerspring.data.classes_from_json.UserJSON;
 import com.compile.testcompilerspring.data.User;
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hibernate.Session;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -17,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
-import java.nio.Buffer;
 import java.util.ArrayList;
 
 @Controller
@@ -33,11 +30,14 @@ public class RegistrationController {
             session.beginTransaction();
 
             BufferedReader reader = request.getReader();
-            String line, jsonString = "";
+            String line = "";
+
+            StringBuilder jsonString = new StringBuilder();
+
             while ((line = reader.readLine()) != null) {
-                jsonString += line;
+                jsonString.append(line);
             }
-            User user = UserJSON.createUserFromJsonString(jsonString);
+            User user = UserJSON.createUserFromJsonString(jsonString.toString());
             Boolean userCreated = user.tryCreatedUser(session);
 
             if (userCreated) {

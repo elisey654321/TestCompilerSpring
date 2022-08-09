@@ -1,4 +1,4 @@
-package com.compile.testcompilerspring.data.JSON_Classes;
+package com.compile.testcompilerspring.data.classes_from_json;
 
 import com.compile.testcompilerspring.data.User;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -25,10 +25,9 @@ public class UserJSON {
 
         ObjectMapper mapper = new ObjectMapper();
         UserJSON userJSON = mapper.readValue(strReader, UserJSON.class);
-        User user = User.builder()
+        return User.builder()
                 .password(userJSON.getPassword())
                 .name(userJSON.getName())
                 .build();
-        return user;
     }
 }

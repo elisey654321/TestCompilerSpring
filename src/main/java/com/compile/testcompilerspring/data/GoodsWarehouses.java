@@ -1,9 +1,9 @@
 package com.compile.testcompilerspring.data;
 
+import com.compile.testcompilerspring.data.enums.TypesMovement;
 import com.compile.testcompilerspring.data.virtualTables.GoodsWarehousesRemains;
 import lombok.*;
 import org.hibernate.Session;
-import org.hibernate.annotations.Generated;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -39,7 +39,7 @@ public class GoodsWarehouses {
     @NonNull
     TypesMovement typeMovement;
 
-    public final void saveInDataBase() throws CloneNotSupportedException {
+    public final void saveInDataBase(){
         Session session = HibernateUtils.getSession();
         session.beginTransaction();
         GoodsWarehousesRemains goodsWarehousesRemains = new GoodsWarehousesRemains();

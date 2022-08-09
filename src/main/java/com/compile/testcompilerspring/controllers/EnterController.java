@@ -1,7 +1,7 @@
 package com.compile.testcompilerspring.controllers;
 
 import com.compile.testcompilerspring.data.HibernateUtils;
-import com.compile.testcompilerspring.data.JSON_Classes.UserJSON;
+import com.compile.testcompilerspring.data.classes_from_json.UserJSON;
 import com.compile.testcompilerspring.data.User;
 import org.hibernate.Session;
 import org.springframework.http.HttpStatus;
@@ -14,8 +14,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 @Controller
 public class EnterController {
