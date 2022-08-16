@@ -1,14 +1,7 @@
 package com.compile.testcompilerspring;
 
+import com.compile.testcompilerspring.сonfigurations.HttpSmsSender;
 import org.junit.jupiter.api.Test;
-
-import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-
-import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.junit.jupiter.api.Assertions.*;
 
 class HttpSmsSenderTest {
 

@@ -34,6 +34,7 @@ public class HibernateUtils {
         cfg.addAnnotatedClass(GoodsWarehousesRemains.class);
         cfg.addAnnotatedClass(Warehouses.class);
         cfg.addAnnotatedClass(Item.class);
+        cfg.addAnnotatedClass(Call.class);
     }
 
     /**

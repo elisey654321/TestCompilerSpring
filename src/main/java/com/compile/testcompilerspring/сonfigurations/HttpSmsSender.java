@@ -1,4 +1,4 @@
-package com.compile.testcompilerspring;
+package com.compile.testcompilerspring.сonfigurations;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
