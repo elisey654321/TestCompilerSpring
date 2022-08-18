@@ -2,9 +2,8 @@ package com.compile.testcompilerspring.data;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 
 @Data
 @AllArgsConstructor
@@ -12,6 +11,7 @@ import javax.persistence.Id;
 @Builder
 @ToString
 @Entity
+@EntityListeners({})
 public class Call {
 
     @Id
@@ -27,5 +27,7 @@ public class Call {
     private String duration1;
     private String duration2;
     private String condition;
-    
+
+
+
 }
