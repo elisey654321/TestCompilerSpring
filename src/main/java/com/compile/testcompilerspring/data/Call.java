@@ -11,7 +11,6 @@ import javax.persistence.*;
 @Builder
 @ToString
 @Entity
-@EntityListeners({})
 public class Call {
 
     @Id
