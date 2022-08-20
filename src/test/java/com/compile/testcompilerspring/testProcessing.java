@@ -1,16 +1,20 @@
 package com.compile.testcompilerspring;
 
+import com.compile.testcompilerspring.data.CallExtends;
+import com.compile.testcompilerspring.data.SomeType;
 import org.junit.jupiter.api.Test;
+import org.junit.runners.JUnit4;
+import org.junit.runners.model.InitializationError;
+
+import java.util.Optional;
+
+import static org.junit.Assert.assertEquals;
 
 public class testProcessing {
 
     @Test
-    void testOptimization(){
-        long l = System.currentTimeMillis();
-        for (int i = 0; i < 10000; i++) {
-            Integer[] integers = new Integer[1024*1024];
-        }
-        System.out.println(System.currentTimeMillis() - l);
-        System.out.println(Integer.MAX_VALUE);
+    void testOptimization() {
+        int sum = 6;
+        assertEquals(6, sum);
     }
 }
