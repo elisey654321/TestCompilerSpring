@@ -1,8 +1,10 @@
 package com.compile.testcompilerspring.data;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Data
@@ -11,6 +13,7 @@ import javax.persistence.*;
 @Builder
 @ToString
 @Entity
+@JsonAutoDetect
 public class Call {
 
     @Id
@@ -20,11 +23,11 @@ public class Call {
     private String Number1;    
     private String Number2;
     private String calltouch;
-    private String date1;
-    private String date2;
-    private String date3;
-    private String duration1;
-    private String duration2;
+    private Date date1;
+    private Date date2;
+    private Date date3;
+    private Integer duration1;
+    private Integer duration2;
     private String condition;
 
 
