@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+tested/10000.txt
+tested/2000000.txt
