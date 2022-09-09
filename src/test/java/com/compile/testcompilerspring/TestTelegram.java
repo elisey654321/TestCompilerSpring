@@ -40,12 +40,12 @@ public class TestTelegram {
     private class MyClassicBot extends TelegramLongPollingBot {
 
         @Override
-        public String getBotUsername() {
+        public final String getBotUsername() {
             return "testedJava_bot";
         }
 
         @Override
-        public String getBotToken() {
+        public final String getBotToken() {
             return "5634796223:AAHG5cUYHSohNCP3ySOGdnULzicMQJWZ-nY";
         }
 
